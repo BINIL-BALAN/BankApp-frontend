@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-6">
+            <div class="border border-2 rounded-2 p-4">
+         <img height="59%" width="100%" src="https://www.indiafilings.com/learn/wp-content/uploads/2021/10/current-bank-account.png" alt="">
+        </div>
+      </div>
+          <div class="col-6">
+           <div class="border border-2 rounded-2 p-4">
+            <h2 class="mb-4">Registration</h2>
+                  <form [formGroup]="registerForm" (ngSubmit)="register()">
+                     <div class="mb-3">
+                         <label for="exampleFormControlInput1" class="form-label">Account number</label>
+                         <input name="accno" formControlName="accno" type="text" class="form-control" id="exampleFormControlInput1" placeholder="acc.no">
+                       </div>
+
+                       <div class="mb-3 text-danger" *ngIf="this.registerForm.get('accno')?.errors && this.registerForm.get('accno')?.touched">Invalid account number</div>
+
+                       <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Username</label>
+                        <input name="username" formControlName="userName" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Username">
+                      </div>
+
+                      <div class="mb-3 text-danger" *ngIf="this.registerForm.get('userName')?.errors && this.registerForm.get('userName')?.touched">Invalid userName</div>
+
+                       <div class="mb-3">
+                         <label for="exampleFormControlTextarea3" class="form-label">Password</label>
+                         <input name="password" formControlName="password" type="password" class="form-control" id="exampleFormControlTextarea3" placeholder="password">
+                       </div>
+
+                       <div class="mb-3 text-danger" *ngIf="this.registerForm.get('password')?.errors && this.registerForm.get('password')?.touched">Invalid pasword</div>
+
+                       <div class="mb-3">
+                         <button type="submit" class="btn btn-success">Register</button> 
+                       </div>
+                  </form>
+           </div>
+          </div>
+    </div>
+   </div>

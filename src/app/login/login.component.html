@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 pt-5">
+ <div class="row">
+    <div class="col-6">
+      <div class="border border-2 rounded-2 p-4">
+   <img height="48%" width="81%" src="https://www.shutterstock.com/image-vector/mobile-banking-online-payment-concept-260nw-1900200964.jpg" alt="">
+  </div>
+</div>
+       <div class="col-6">
+       <div class="border border-2 rounded-2 p-4">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <h2 class="mb-4">Login</h2>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Account number</label>
+                    <input name="accno" formControlName="accno" type="text" class="form-control" placeholder="Accound number">
+                  </div>
+                  <div class="mb-3 text-danger" *ngIf="this.loginForm.get('accno')?.errors && this.loginForm.get('accno')?.touched">Invalid account number</div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                    <input name="password" formControlName="password" type="password" class="form-control" id="exampleFormControlTextarea3" placeholder="password">
+                  </div>
+                  <div class="mb-3 text-danger" *ngIf="this.loginForm.get('password')?.errors && this.loginForm.get('password')?.touched">Invalid password</div>
+                 <div class="text-danger">{{errorMsg}}</div>
+                  <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Login
+                      <span class="spinner-border text-light" role="status" *ngIf="successMsg">
+                        <span class="visually-hidden">Loading...</span>
+                      </span>
+                    </button> 
+                    or Click here to <a routerLink="/bankApplication/registration">register</a>
+                  </div>
+          </form>
+       </div>
+       </div>
+ </div>
+</div>
+
