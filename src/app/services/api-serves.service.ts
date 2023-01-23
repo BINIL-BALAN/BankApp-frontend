@@ -43,5 +43,26 @@ export class ApiServesService {
     return this.api.get('http://localhost:3000/getBalance/' + accno,this.appendToken())
   }
 
+  depositAmount(accno:any,amount:any){
+      const body={
+        acno:accno,
+        amount:amount
+      }
+      return this.api.post("http://localhost:3000/deposit",body,this.appendToken())
+  }
 
-}
+  fundTransfer(toAcno:any,psd:any,amt:any){
+   let body={
+      toAcno:toAcno,
+      password:psd,
+      amount:amt
+    }
+    return this.api.post('http://localhost:3000/fundTransfer',body,this.appendToken())
+    }
+
+    getTranscstions(){
+      return this.api.get('http://localhost:3000/transcations',this.appendToken())
+    }
+     
+  }
+

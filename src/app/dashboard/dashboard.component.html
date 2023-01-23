@@ -18,15 +18,19 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-primary" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
+                           Services
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item text-primary" href="#offcanvasDeposit"
-                                data-bs-toggle="offcanvas">Deposit</a></li>
-                            <li><a class="dropdown-item text-primary" href="#">Fund transfer</a></li>
+                                    data-bs-toggle="offcanvas">Deposit</a></li>
+                            <li><a class="dropdown-item text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Fund transfer</a></li>
                             <li><a (click)="checkBalance()" class="dropdown-item text-primary" href="#offcanvasExample"
                                     data-bs-toggle="offcanvas">Balance enquire</a></li>
-                            <li><a class="dropdown-item text-primary" href="#">MIni statemaent</a></li>
+                            <li><a class="dropdown-item text-primary" routerLink="/bankApplication/Transctions">Mini statemaent</a></li>
+                            <li><hr></li>
+                            <li><a class="dropdown-item text-primary" routerLink=""><i class="fa fa-trash-can"></i> Delete account</a></li>
+                            <li><a class="dropdown-item text-primary" routerLink=""><i class="fa fa-left-long"></i> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,9 +55,9 @@
                 delectus soluta consequatur libero unde esse. Eum sunt, aut magnam libero necessitatibus fuga vel soluta
                 consequuntur amet.
             </div>
-            <button class="btn btn-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
-                show more
+            <button class="btn btn-primary mt-2" (click)="toggle()" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                show {{toggleMsg}}
             </button>
         </div>
         <div class="col-8"></div>
@@ -82,10 +86,60 @@
     <div class="offcanvas-body">
         <div>
             <h5>Hello {{username}}</h5>
-           <form action="" class="mt-3">
-            <input type="text" class="form-control" name="" id="" placeholder="Enter amount"><br>
-            <button class="btn btn-success">Deposit</button>
-           </form>
+            <form (ngSubmit)="deposit()" class="mt-3" [formGroup]="depositform">
+                <input type="text" name="amount" formControlName="amount" class="form-control" name="amount"
+                    formControlName="amount" placeholder="Enter amount" /><br>
+                <div class="text-danger"
+                    *ngIf="this.depositform.get('amount')?.errors && this.depositform.get('amount')?.touched">Invalid
+                    amount</div>
+                <div [ngClass]="depositeMsgClass"><strong>{{depositeMsg}}</strong></div>
+                <button class="btn btn-success">Deposit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Fund transfer-->
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" (click)=" clearFundTransferForm()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="transferFund">
+                <div class="modal-body">
+                    <input type="text" name="toaccno" formControlName="toaccno" class="form-control m-3"
+                        placeholder="Credit account number">
+
+                    <div class="text-danger"
+                        *ngIf="this.transferFund.get('toaccno')?.errors && this.transferFund.get('toaccno')?.touched">
+                        Invalid amount
+                    </div>
+                    
+                    <input type="password" name="password" formControlName="password" class="form-control m-3"
+                        placeholder="Enter your password">
+
+                    <div class="text-danger"
+                        *ngIf="this.transferFund.get('password')?.errors && this.transferFund.get('password')?.touched">
+                        Invalid amount
+                    </div>
+
+                    <input type="text" name="amount" formControlName="amount" class="form-control m-3" placeholder="Amount">
+                    
+                    <div class="text-danger"
+                        *ngIf="this.transferFund.get('amount')?.errors && this.transferFund.get('amount')?.touched">
+                        Invalid amount
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-success"><strong>{{transferMessage}}</strong></div>
+                    <button type="button" (click)=" clearFundTransferForm()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button (click)=" trensfer()" type="button" class="btn btn-primary">Transfer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

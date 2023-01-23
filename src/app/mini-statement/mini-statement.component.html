@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="col-8">
+            <a class="navbar-brand text-primary" routerLink="/bankApplication/dashboard">
+                <i class="fa fa-bank"></i> Online bank app
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-2">
+    <h3 class="text-primary">
+        Transcations
+    </h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ipsa unde illum enim, consectetur suscipit, omnis
+        assumenda consequatur a architecto obcaecati minima eos veniam, esse nemo sequi earum. Adipisci, error!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias tempora, rem, vitae minus aut voluptatum corrupti
+        magnam dignissimos mollitia repellat unde necessitatibus labore vero modi, eos excepturi at amet ducimus!
+        Explicabo laborum velit repellat cumque illum quasi, amet quisquam, nam libero alias itaque praesentium eaque
+        qui doloribus odio sapiente, officia ex cum ipsam ullam autem asperiores quae maiores? Unde, reprehenderit.
+    </p>
+</div>
+
+<div class="container border mt-2 p-3">
+    <div class="row">
+        <div class="col-3"><h3 class="text-success">Transcation history</h3></div>
+        <div class="col-6">
+            <input type="text" name="" (keyup)="search($event)" class="form-control" placeholder="Search by type">
+        </div>
+        <div class="col-3">
+            <button  (click)=" genderatePDF()" class="btn w-75 btn-success">Export</button>
+        </div>
+    </div>
+
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+            <td>No</td>
+            <td>Transction type</td>
+            <td>From account</td>
+            <td>To account</td>
+            <td>Amount</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transcation of allTranscations | filter :searchKey :'type' ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{transcation.type}}</td>
+            <td>{{transcation.fromAcno}}</td>
+            <td>{{transcation.toAcno}}</td>
+            <td>{{transcation.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

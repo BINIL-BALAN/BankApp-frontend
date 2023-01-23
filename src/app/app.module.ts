@@ -9,13 +9,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { RouterModule } from '@angular/router';
+import { MiniStatementComponent } from './mini-statement/mini-statement.component';
+import { FilterPipe } from './pipes/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    MiniStatementComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
